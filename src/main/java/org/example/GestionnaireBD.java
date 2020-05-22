@@ -9,7 +9,7 @@ public class GestionnaireBD {
   public Connection conn;
   public Statement stmt;
 
-  static final String DB_URL = "jdbc:derby:booksdb;create=true";
+  static final String DB_URL = "jdbc:derby:./DB/5_2;create=true";
   static final String JBDB_DRIVE = "org.apache.derby.jdbc.ClientDriver";
 
   public GestionnaireBD() {

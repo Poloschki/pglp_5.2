@@ -12,8 +12,8 @@ public final class Personnel implements Composite, Serializable {
   protected final String nom;
   protected final String prenom;
   protected final String fonction;
-  protected final LocalDateTime naissance;
-  protected final List<String> telephone;
+  protected LocalDateTime naissance ;
+  protected List<String> telephone;
 
   private Personnel(Builder builder) {
     //Required
@@ -31,6 +31,9 @@ public final class Personnel implements Composite, Serializable {
     System.out.println("Nom " + this.nom);
   }
 
+  public void addTelephone (String telephone) {
+    this.telephone.add(telephone);
+  }
   public static class Builder {
     //Required
     private final String nom;
@@ -60,21 +63,6 @@ public final class Personnel implements Composite, Serializable {
 
     public Personnel build() {
       return new Personnel(this);
-    }
-
-  }
-
-  public void serialize(String filename) {
-    try {
-      FileOutputStream file = new FileOutputStream(filename);
-      ObjectOutputStream out = new ObjectOutputStream(file);
-
-      out.writeObject(this);
-
-      out.close();
-      file.close();
-    } catch (IOException exception) {
-      exception.printStackTrace();
     }
 
   }

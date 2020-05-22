@@ -2,7 +2,7 @@ package org.example;
 
 import java.io.*;
 
-public class PersonnelDAO extends DAO<Personnel> {
+public class PersonnelDAOSerial extends DAO<Personnel> {
 
   @Override
   public void create(Personnel obj) {
@@ -34,6 +34,11 @@ public class PersonnelDAO extends DAO<Personnel> {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+  }
+
+  @Override
+  public void update(Personnel obj) {
 
   }
 }
