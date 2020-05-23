@@ -28,6 +28,11 @@ public final class Personnel implements Composite, Serializable {
     System.out.println("Nom " + this.nom);
   }
 
+  @Override
+  public String getnom() {
+    return this.nom;
+  }
+
   public void addTelephone (String telephone) {
     this.telephone.add(telephone);
   }

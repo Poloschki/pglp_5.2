@@ -5,4 +5,6 @@ public abstract class DAOBD<T> extends DAO<T> {
 
   public abstract void createTable();
 
+  public abstract void delete(T obj);
+
 }

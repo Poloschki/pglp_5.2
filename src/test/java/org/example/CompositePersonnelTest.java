@@ -8,8 +8,8 @@ public class CompositePersonnelTest {
 
   @Test
   public void add() {
-    CompositePersonnel cp = new CompositePersonnel();
-    CompositePersonnel c1 = new CompositePersonnel();
+    CompositePersonnel cp = new CompositePersonnel("cp");
+    CompositePersonnel c1 = new CompositePersonnel("cp");
     cp.add(c1);
     assertEquals(1,cp.enfantComposite.size());
     cp.add(cp);
@@ -23,8 +23,8 @@ public class CompositePersonnelTest {
 
   @Test
   public void remove() {
-    CompositePersonnel cp = new CompositePersonnel();
-    CompositePersonnel c1 = new CompositePersonnel();
+    CompositePersonnel cp = new CompositePersonnel("cp");
+    CompositePersonnel c1 = new CompositePersonnel("pc");
     Personnel p1 = new Personnel.Builder("A","A","A").build();
     Personnel p2 = new Personnel.Builder("A","A","A").build();
 

@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CompositeDAOSerial extends DAO<CompositePersonnel> {
+public class CompositeDAOSerial extends DAOSerial<CompositePersonnel> {
 
 
   @Override

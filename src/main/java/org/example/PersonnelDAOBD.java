@@ -63,18 +63,18 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
   }
 
   @Override
-  public void delete(String name) {
+  public void delete(Personnel perso) {
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM PERSONNEL WHERE nom = ? ");
-      preparedStatement.setString(1,name);
+      preparedStatement.setString(1,perso.getnom());
       int result = preparedStatement.executeUpdate();
       assert result == 1;
 
       preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM TELEPHONE WHERE nom = ?");
-      preparedStatement.setString(1,name);
+      preparedStatement.setString(1,perso.getnom());
       result = preparedStatement.executeUpdate();
       assert result == 1;
 
@@ -106,6 +106,7 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
+    gestionBD.disconnect();
   }
 
   @Override
@@ -134,5 +135,6 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
+    gestionBD.disconnect();
   }
 }

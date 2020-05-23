@@ -2,7 +2,7 @@ package org.example;
 
 import java.io.*;
 
-public class PersonnelDAOSerial extends DAO<Personnel> {
+public class PersonnelDAOSerial extends DAOSerial<Personnel> {
 
   @Override
   public void create(Personnel obj) {
