@@ -2,7 +2,7 @@ package org.example;
 
 import java.sql.*;
 
-public class PersonnelDAOBD extends DAO<Personnel> {
+public class PersonnelDAOBD extends DAOBD<Personnel> {
   @Override
   public void create(Personnel obj) {
     gestionBD.connect();
@@ -103,6 +103,34 @@ public class PersonnelDAOBD extends DAO<Personnel> {
 
       result = preparedStatement.executeUpdate();
       assert result == 1;
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+  }
+
+  @Override
+  public void createTable() {
+    gestionBD.connect();
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS PERSONNEL("
+              + "nom varchar(50) not null"
+              + "prenom varchar(50) not null"
+              + "fonction varchar(150) not null"
+              + "naissance date "
+              + "PRIMARY KEY (nom));");
+      int set = preparedStatement.executeUpdate();
+      assert set == 1;
+
+      preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS TELEPHONE("
+              + "nom varchar(50) not null"
+              + "telephone varchar(12) not null"
+              + "PRIMARY KEY (nom,telephone));");
+      set = preparedStatement.executeUpdate();
+      assert set ==1;
+
+      preparedStatement.close();
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }

@@ -3,7 +3,7 @@ package org.example;
 import java.sql.Connection;
 
 public abstract class DAO<T> {
-  protected GestionnaireBD gestionBD = new GestionnaireBD();
+
 
   public abstract void create(T obj);
 
@@ -14,3 +14,4 @@ public abstract class DAO<T> {
   public abstract void update(T obj);
 
 }
+
