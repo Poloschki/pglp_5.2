@@ -2,10 +2,10 @@ package org.example;
 
 public class DAOFactory {
   public static DAO<Personnel> getPersonnelDAO() {
-    return new PersonnelDAO();
+    return new PersonnelDAOBD();
   }
 
-  public static DAO<CompositePersonnel> getCompositeDAO() {
-    return new CompositeDAO();
-  }
+  //public static DAO<CompositePersonnel> getCompositeDAO() {
+   // return new CompositeDAOSerial();
+  //}
 }
