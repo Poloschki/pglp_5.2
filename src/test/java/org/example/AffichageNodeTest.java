@@ -8,8 +8,8 @@ public class AffichageNodeTest {
 
   @Test
   public void next() {
-    CompositePersonnel cp = new CompositePersonnel();
-    CompositePersonnel cp1 = new CompositePersonnel();
+    CompositePersonnel cp = new CompositePersonnel("nom");
+    CompositePersonnel cp1 = new CompositePersonnel("nom");
     Personnel p1 = new Personnel.Builder("A","Anne","CEO").build();
     Personnel p2 = new Personnel.Builder("B","Bob","ADJ").build();
     Personnel p3 = new Personnel.Builder("C","Charlie","Stage").build();

@@ -69,6 +69,20 @@ public class CompositePersonnelDAODB extends DAOBD<CompositePersonnel>{
 
   @Override
   public void createTable() {
-
+    gestionBD.connect();
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS COMPOSITE("
+              + "nom varchar(100) NOT NULL,"
+              + "id int(10) AUTO_INCREMENT,"
+              + "nomcomposite varchar(100) NOT NULL,"
+              + "PRIMARY KEY (id)); ");
+      int set = preparedStatement.executeUpdate();
+      assert set == 1;
+      preparedStatement.close();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    gestionBD.disconnect();
   }
 }
