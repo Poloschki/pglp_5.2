@@ -1,12 +1,21 @@
 package org.example;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class PersonnelDAOSerial extends DAOSerial<Personnel> {
 
   @Override
   public void create(Personnel obj) {
-    try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("personnelDAO")))) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(
+            new FileOutputStream("personnelDAO")))) {
       out.writeObject(obj);
     } catch (IOException exception) {
       exception.printStackTrace();
@@ -16,7 +25,9 @@ public class PersonnelDAOSerial extends DAOSerial<Personnel> {
   @Override
   public Personnel find(String id) {
     Personnel personnel = null;
-    try (ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(id)))) {
+    try (ObjectInputStream input = new ObjectInputStream(
+        new BufferedInputStream(
+            new FileInputStream(id)))) {
       personnel = (Personnel) input.readObject();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();

@@ -7,7 +7,8 @@ import java.util.List;
 public class CompositePersonnel implements Composite, Serializable {
   protected List<Composite> enfantComposite;
   private final String nom;
-  public CompositePersonnel(String nom){
+
+  public CompositePersonnel(String nom) {
     this.nom = nom;
     this.enfantComposite = new ArrayList<>();
   }

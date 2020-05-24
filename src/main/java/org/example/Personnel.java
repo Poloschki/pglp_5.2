@@ -9,7 +9,7 @@ public final class Personnel implements Composite, Serializable {
   protected final String nom;
   protected final String prenom;
   protected final String fonction;
-  protected LocalDateTime naissance ;
+  protected LocalDateTime naissance;
   protected List<String> telephone;
 
   private Personnel(Builder builder) {
@@ -33,9 +33,10 @@ public final class Personnel implements Composite, Serializable {
     return this.nom;
   }
 
-  public void addTelephone (String telephone) {
+  public void addTelephone(String telephone) {
     this.telephone.add(telephone);
   }
+
   public static class Builder {
     //Required
     private final String nom;
@@ -47,6 +48,12 @@ public final class Personnel implements Composite, Serializable {
     private LocalDateTime naissance = currentTime.withDayOfMonth(1).withYear(1990).withMonth(1);
     private final List<String> telephone = new ArrayList<>();
 
+    /**
+     * Builder d'un personne.
+     * @param nom nom de la personne.
+     * @param prenom prénom de la personne.
+     * @param fonction fonction de la personne.
+     */
     public Builder(String nom, String prenom, String fonction) {
       this.nom = nom;
       this.prenom = prenom;

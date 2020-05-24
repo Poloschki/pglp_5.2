@@ -17,15 +17,22 @@ public class GestionnaireBD {
     stmt = null;
   }
 
+  /**
+   * Permet la connection avec la base de donnée.
+   */
   public void connect() {
     try {
       Class.forName(JBDB_DRIVE).newInstance();
       this.conn = DriverManager.getConnection(DB_URL);
-    } catch (IllegalAccessException | InstantiationException | ClassNotFoundException | SQLException e) {
+    } catch (IllegalAccessException | InstantiationException
+      | ClassNotFoundException | SQLException e) {
       e.printStackTrace();
     }
   }
 
+  /**
+   * Permet la déconnection de la base de donnée.
+   */
   public void disconnect() {
     try {
       if (stmt != null) {

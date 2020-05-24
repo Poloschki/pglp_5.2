@@ -1,6 +1,10 @@
 package org.example;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class PersonnelDAOBD extends DAOBD<Personnel> {
   @Override
@@ -17,7 +21,7 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
       int resultat = preparedStatement.executeUpdate();
       assert resultat == 1;
 
-      for(String telephone : obj.telephone){
+      for (String telephone : obj.telephone) {
         PreparedStatement ps  = gestionBD.conn.prepareStatement(
             "INSERT INTO TELEPHONE (nom, telephone) VALUES (?,?)");
         ps.setString(1,obj.nom);
@@ -41,10 +45,12 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
           "SELECT * FROM PERSONNEL WHERE nom = ?");
       preparedStatement.setString(1,id);
       ResultSet resultSet = preparedStatement.executeQuery();
-      while(resultSet.next()) {
-        if(resultSet.getString("nom").equals(id)) {
+
+      while (resultSet.next()) {
+        if (resultSet.getString("nom").equals(id)) {
           p = new Personnel.Builder(resultSet.getString("nom"),resultSet.getString("prenom"),
-              resultSet.getString("fonction")).naissance(resultSet.getTimestamp("naissance").toLocalDateTime())
+              resultSet.getString("fonction"))
+              .naissance(resultSet.getTimestamp("naissance").toLocalDateTime())
               .build();
         }
       }
@@ -129,7 +135,7 @@ public class PersonnelDAOBD extends DAOBD<Personnel> {
               + "telephone varchar(12) not null"
               + "PRIMARY KEY (nom,telephone));");
       set = preparedStatement.executeUpdate();
-      assert set ==1;
+      assert set == 1;
 
       preparedStatement.close();
     } catch (SQLException throwables) {

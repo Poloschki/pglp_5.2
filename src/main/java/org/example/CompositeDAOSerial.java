@@ -1,6 +1,13 @@
 package org.example;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,7 +17,9 @@ public class CompositeDAOSerial extends DAOSerial<CompositePersonnel> {
   @Override
   public void create(CompositePersonnel obj) {
     AffichageNode affichage = new AffichageNode(obj, true);
-    try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("compositeDAO")))) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(
+            new FileOutputStream("compositeDAO")))) {
       while (affichage.hasNext()) {
         out.writeObject(affichage.next());
       }
@@ -23,7 +32,9 @@ public class CompositeDAOSerial extends DAOSerial<CompositePersonnel> {
   public CompositePersonnel find(String id) {
     CompositePersonnel cp = null;
     ArrayList<CompositePersonnel> listresu = new ArrayList<>();
-    try (ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream("compositeDAO")))) {
+    try (ObjectInputStream input = new ObjectInputStream(
+        new BufferedInputStream(
+            new FileInputStream("compositeDAO")))) {
       listresu = (ArrayList<CompositePersonnel>) input.readObject();
       for (CompositePersonnel readcp : listresu) {
         if (readcp.equals(listresu)) {

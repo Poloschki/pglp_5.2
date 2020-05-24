@@ -1,13 +1,10 @@
 package org.example;
 
-import sun.applet.AppletResourceLoader;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-public class CompositePersonnelDAODB extends DAOBD<CompositePersonnel>{
+public class CompositePersonnelDAODB extends DAOBD<CompositePersonnel> {
 
   @Override
   public void create(CompositePersonnel obj) {
@@ -16,7 +13,8 @@ public class CompositePersonnelDAODB extends DAOBD<CompositePersonnel>{
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO COMPOSITE (nom,nomcomposite) VALUES (?,?)");
       preparedStatement.setString(1,obj.getnom());
-      preparedStatement.setString(2,obj.enfantComposite.get(obj.enfantComposite.size()-1).getnom());
+      preparedStatement.setString(2,obj.enfantComposite
+          .get(obj.enfantComposite.size() - 1).getnom());
       int result = preparedStatement.executeUpdate();
       assert result == 1;
 
